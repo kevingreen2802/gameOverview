@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Adding a title -->
+    <title>Store Your Game</title>
+    <!-- Adding parameter for character encoding -->
+    <meta charset="utf-8"/>
+    <!-- Inserting css stylesheet -->
+    <link rel="stylesheet" href="web/css/spieleverwaltung.css">
+</head>
+<body>
+<!-- headline with style classes -->
+<div class="theme-gamecube header">Video Game Overview</div>
+<!-- Contains body specific style class -->
+<div class="theme-gamecube body"><br>
+    <!-- Creating a button with an onclick event which contains a javacript code to alter between different styles -->
+
+    <!-- Creating a search field to filter results -->
+    <input id="toggle" type="checkbox" class="hidecheckbox">
+    <label class="theme-gamecube" for="toggle">Search</label>
+    <label class="theme-gamecube style" type="button" onclick="switchClasses();">Try another Style!</label>
+    <div id="expand"><br>
+        <form name="searchGame" action="index.php" method="GET">
+            <input type="search" name="name" class="theme-gamecube showGame" value="<?php echo $_SESSION['query']['name']; ?>" placeholder="Insert Name...">
+            <input type="search" name="developer" class="theme-gamecube showDevelopers" value="<?php echo $_SESSION['query']['developer']; ?>" placeholder="Insert Developer...">
+            <input type="search" name="device" class="theme-gamecube showDevice" value="<?php echo $_SESSION['query']['device']; ?>" placeholder="Insert Device...">
+            <input type="search" name="company" class="theme-gamecube showCompany" value="<?php echo $_SESSION['query']['company']; ?>" placeholder="Insert Company...">
+            <input type="search" name="medium" class="theme-gamecube showMedium" value="<?php echo $_SESSION['query']['medium']; ?>" placeholder="Insert Medium...">
+            <button type="submit" class="theme-gamecube save" name="searchGameEntry">Search</button>
+            <button type="submit" class="theme-gamecube delete" name="resetGameSearchEntry">Reset</button>
+        </form>
+    </div>
+    <br><br>
+    <?php if (isset($_SESSION['error'])) : ?>
+        <div>
+            <form name='sessionError' action='index.php' method='post'>
+                <div class="sessionError">
+                    <?php echo $_SESSION['error'] ; ?>
+                </div>
+                <button type='submit' name='clearError'>Ignore</button>
+            </form>
+        </div>
+    <?php endif ; ?>
+    <br>
+    <!-- Creating the headlines for every column -->
+    <div class='theme-gamecube headlines showGame'>Game</div>
+    <div class='theme-gamecube headlines showDevelopers'>Developer</div>
+    <div class='theme-gamecube headlines showDevice'>Device</div>
+    <div class='theme-gamecube headlines showCompany'>Company</div>
+    <div class='theme-gamecube headlines showMedium'>Medium</div>
+    <div class='theme-gamecube headlines'>Actions</div>
+    <!-- Creating table form for new game entry -->
+    <form name='createNewGame' action='index.php' method='post'>
+        <input class='theme-gamecube showGame' name='spieleName'>
+        <select class='theme-gamecube showDevelopers' name='spieleEntwickler'>
+            <!-- Filling the select field with options by using a foreach function with the different developer names-->
+            <?php foreach($developers as $key => $developer) : ?>
+            <option value='<?php echo $developer["id"]; ?>'>
+                <?php echo $developer['name']; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
+        <!-- Creating a select field for choosing the device -->
+        <select class='theme-gamecube showDevice' name='geräteName'>
+            <!-- filling the select field with options by using a foreach function with the different device names -->
+            <?php foreach($devices as $key => $device) :?>
+            <option value='<?php echo $device["id"]; ?>'>
+                <?php echo $device['name']; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
+        <!-- Creating an input field for the companies, field is disabled. Field is automatically filled according to devices -->
+        <input class='theme-gamecube showCompany' name='herstellerName' disabled>
+        <!-- Creating a select field for choosing whether the game is digital or retail -->
+        <select class='theme-gamecube showMedium' name='spieleMedium'>
+            <!-- filling the select field with options by using a foreach function with the different medium types -->
+            <?php foreach($mediumTypes as $key => $mediumType) : ?>
+            <option value='<?php echo $mediumType["id"]; ?>'>
+                <?php echo $mediumType['name']; ?>
+            </option>
+            <?php endforeach; ?>
+        </select>
+        <!-- Creating a button for adding the new inserted game into the database -->
+        <button type='submit' class='theme-gamecube add' name='createGame'> Add new game</button>
+    </form>
+    <?php if (empty($games)) : ?>
+        <div class="theme-gamecube nodata">No data found.</div>
+    <?php else : ?>
+    <!-- Creating multiple tables with the use of a foreach function to display games that are already saved in the database -->
+    <?php foreach($games as $index => $entry) : ?>
+    <form name='updateGame <?php echo $index; ?>' action='index.php' method='post'>
+        <!-- submitting the Game ID as a hidden object -->
+        <input type='hidden' name='gameID' value='<?php echo $entry["Spiele-ID"]; ?>'/>
+        <!-- Creating an input field to display game titles -->
+        <input class='theme-gamecube showGame' name='spieleName' value='<?php echo $entry["Spiele-Name"]; ?>'>
+        <!-- Creating a select field to display the developer -->
+        <select class='theme-gamecube showDevelopers' name='developers'>
+            <?php foreach($developers as $key => $developer) : ?>
+                <?php if($developer['name'] == $entry['Entwickler-Name']) : ?>
+                    <option class= showDevelopers' value='<?php echo $developer["id"]; ?>' selected>
+                        <?php echo $developer['name']; ?>
+                    </option>
+                <?php else : ?>
+                    <option value='<?php echo $developer["id"]; ?>'>
+                        <?php echo $developer['name']; ?>
+                    </option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+        <!-- Creating a select field to display the device by using a foreach function -->
+        <select class='theme-gamecube showDevice' name='devices'>
+            <?php foreach($devices as $key => $device) : ?>
+            <!-- Check if the devices are identical to display the right device, ... -->
+                <?php if ($device['name'] == $entry['Geräte-Name']) : ?>
+                    <option value='<?php echo $device["id"]; ?>' selected>
+                        <?php echo $device['name']; ?>
+                    </option>
+                <!-- ... otherwise display the default device -->
+                <?php else : ?>
+                    <option value='<?php echo $device["id"]; ?>'>
+                        <?php echo $device['name']; ?>
+                    </option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+        <!-- Creating a disabled, non-interactive input field to display the company.
+        Field is automatically filled with the right company according to the device -->
+        <input class='theme-gamecube showCompany' name='spieleName' disabled
+               value='<?php echo $entry["Hersteller-Name"]; ?>'/>
+        <!-- Creating a select field to display the medium types -->
+        <select class='theme-gamecube showMedium' name='mediumtypes'>
+            <?php foreach($mediumTypes as $key => $mediumType) : ?>
+                <?php if ($mediumType['name'] == $entry['Medium-Name']) : ?>
+                    <option value='<?php echo $mediumType["id"]; ?>' selected>
+                        <?php echo $mediumType['name']; ?>
+                    </option>
+                <?php else : ?>
+                    <option value='<?php echo $mediumType["id"]; ?>'>
+                        <?php echo $mediumType['name']; ?>
+                    </option>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </select>
+        <!-- Creating a button which causes a game entry to update -->
+        <button class='theme-gamecube save' type='submit' name='updateGame'>Save</button>
+        <!-- Creating a button which causes a game to be deleted -->
+        <button class='theme-gamecube delete' type='submit' name='gameToDelete'>Delete</button>
+        <!-- End of form -->
+    </form>
+    <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+<!-- Including the javascript code -->
+<script src="web/js/spieleverwaltung.js"></script>
+</body>
+</html>

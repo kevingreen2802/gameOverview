@@ -1,339 +1,223 @@
+/* Colors */
+:root{
+    --mainColorGamecube: #4b2974;
+    --mainColorController: #bb0000;
+    --saveColorGamecube: darkgreen;
+    --deleteColorGamecube: darkred;
+    --addColorGamecube: yellow;
+    --textColor: black;
+}
+
 /* Body */
-.body{
+.body {
     background-attachment: fixed;
-    background-position: center +260px;
+    background-position: center+260px;
     background-repeat: no-repeat;
     max-width: 1250px;
     margin: auto;
 }
 
+/*Background Images*/
 .theme-gamecube.body {
     background-image: url("../images/gamecube.jpg");
     background-size: 50%;
 }
-
 .theme-controller.body {
     background-image: url("../images/controller.png");
     background-size: 30%;
 }
 
-/* Save */
-.save {
-    color: black;
-    background-color: #f7f7f7;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-size:16px;
-
-}
-.theme-gamecube.save {
-
+/* Themes*/
+.theme-gamecube {
+    color: var(--textColor);
     border-radius: 4px;
-    border: 2px solid darkgreen;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
-.theme-controller.save {
-
-    border: 2px solid black;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-
-.theme-gamecube.save:hover {
-    background-color: darkgreen;
-    color:white;
-    cursor:pointer;
-}
-
-.theme-controller.save:hover {
-    background-color: black;
-    color:white;
-    cursor:pointer;
-}
-
-/* Delete */
-.delete{
-    background-color: #f7f7f7;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-size: 16px;
-
-}
-
-.theme-gamecube.delete {
-
-    border-radius: 4px;
-    border: 2px solid darkred;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.theme-controller.delete {
-
-    border: 2px solid black;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.theme-gamecube.delete:hover {
-    background-color: darkred;
-    color: white;
-    cursor: pointer;
-}
-
-.theme-controller.delete:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
-/* Add */
-.add{
-    background-color: #f7f7f7;
-    color: black;
-    padding: 5px 93px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.theme-gamecube.add {
-
-    border-radius: 4px;
-    border: 2px solid #fef123;
-
-}
-.theme-controller.add {
-
-    border: 2px solid black;
-}
-
-.theme-gamecube.add:hover{
-    background-color: #fef123;
-    color: black;
-    cursor: pointer;
-}
-
-.theme-controller.add:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
-.search {
-    background-color: #f6f6f6;
-    color: black;
-    padding: 5px 48px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-size: 16px;
-    border: 2px solid black;
-    border-radius: 4px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.search:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
-.reset {
-    background-color: #f6f6f6;
-    color: black;
-    padding: 5px 49px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-size: 16px;
-    border: 2px solid black;
-    border-radius: 4px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-.reset:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
-
-
-/* Buttons */
-.buttonsize{
-    width: 146px;
-    height: 31px;
-
-}
-
-.tablesizegames{
-    width: 300px;
-    float: left;
-
-    
-}
-.tablesizedevs{
-    width: 200px;
-    float: left;
-}
-
-.tablesizedevice{
-    width: 150px;
-    float: left;
-}
-
-.tablesizemanu{
-    width:150px;
-    float: left;
-    height: 31.5px;
-}
-
-.tablesizemedium{
-    width:150px;
-    float: left;
-}
-
-/* Descriptions */
-.descriptionfont{
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-.theme-gamecube.descriptionfont{
-    font-family:Sawasdee;
-
-}
-
-.theme-controller.descriptionfont{
-    font-family: arial;
-
-}
-
-.theme-gamecube.descriptionfont:first-letter{
-    color: #4b2974;
-    font-size: xx-large;
-    font-weight: bolder;
-}
-.theme-controller.descriptionfont:first-letter{
-    color: #bb0000;
-    font-size: xx-large;
-    font-weight: bolder;
+.theme-controller {
+    color: var(--textColor);
 }
 
 /* Header */
-.header{
-    height: auto;
-    width: auto;
+.header {
     font-weight: bold;
-
-    color:white;
+    color: white;
     text-align: center;
-
-}
-
-.theme-gamecube.header {
     font-size: 120px;
-    background-color: #4b2974;
+    margin-bottom: 15px;
+}
+.theme-gamecube.header {
+    background-color: var(--mainColorGamecube);
     font-family: Sawasdee;
 }
-
-.theme-controller.header{
-    font-size: 103px;
-    background-color: #bb0000;
+.theme-controller.header {
+    background-color: var(--mainColorController);
     font-family: helvetica;
 }
 
-/* All selects */
-.selection{
-    color: black;
-    padding: 4px;
+.sessionError {
+    background-color: darkred;
+    -webkit-animation-name: blink;
+    color: white;
+    font-size: 50px;
     text-align: center;
-    text-decoration: none;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-size:16px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: dashed yellow;
 }
 
-.theme-gamecube.selection{
+/* Search & Style Label */
+label {
+    padding: 10px 30px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: white;
-    border-radius: 4px;
-    border: 2px solid #4b2974;
 }
-
-.theme-controller.selection {
-
-    border: 2px solid #bb0000;
-}
-
-/* All inputs */
-.input{
-    background-color: #f7f7f7;
-    color: black;
-    padding: 5px ;
-    text-align: center;
-    text-decoration: none;
-    -webkit-transition-duration: 0.4s;
+label:hover {
+    background-color: var(--mainColorGamecube);
     transition-duration: 0.4s;
-    font-size:16px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    color: white;
+}
+label.theme-gamecube {
+    border: var(--mainColorGamecube) solid 2px;
+}
+label.theme-controller {
+    border: var(--mainColorController) solid 2px;
+}
+label.theme-controller:hover {
+    background-color: var(--mainColorController);
+}
+.theme-gamecube.style {
+    border-color: var(--mainColorController);
+}
+.theme-controller.style {
+    border-color: var(--mainColorGamecube);
+}
+.theme-gamecube.style:hover {
+    background-color: var(--mainColorController);
+}
+.theme-controller.style:hover {
+    background-color: var(--mainColorGamecube);
 }
 
-.theme-gamecube.input{
-    border: 2px solid #4b2974;
-    border-radius: 4px;
-}
-
-.theme-controller.input{
-    border: 2px solid #bb0000;
-}
-
-.container {
-    display: flex;
-    min-height:100px;
-}
-
-.sidebar {
-    position: relative;
-    left: 0;
-    width: 200px;
-    background-color: #ccc;
-    transition: all .25s;
-}
-
-.sidebar.collapsed {
-    left:-200px;
-    margin-right:-200px;
-}
-
+/* Search Menu */
 #expand {
-    height: 0px;
+    height: 0;
     overflow: hidden;
     transition: height 0.5s;
     color: #FFF;
 }
-section {
-    padding: 0 20px;
-}
 #toggle:checked ~ #expand {
-    height: 100px;
+    height: 90px;
+    margin-top: 25px;
 }
-#toggle:checked ~ label::before {
-    content: "-";
+.hidecheckbox {
+    display: none;
 }
 
+/* Table Headlines */
+.headlines {
+    font-size: 30px;
+    font-weight: bolder;
+    float: left;
+    font-family: Sawasdee;
+    margin-right: 5px;
+}
+.theme-gamecube.headlines:first-letter {
+    color: var(--mainColorGamecube);
+}
+.theme-controller.headlines:first-letter {
+    color: var(--mainColorController);
+}
 
+/* Tables */
+input, select, button.save, button.delete {
+    height: 30px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 4px;
+}
+input.theme-gamecube, select.theme-gamecube {
+    border: 2px solid var(--mainColorGamecube);
+}
+input.theme-controller, select.theme-controller{
+    border: 2px solid var(--mainColorController);
+}
+.showGame {
+    width: 295px;
+}
+.showDevelopers {
+    width: 200px;
+}
+.showDevice {
+    width: 150px;
+}
+.showCompany {
+    width: 150px;
+}
+.showMedium {
+    width: 125px;
+}
+
+/* Buttons */
+button {
+    border-style: solid;
+    background-color: #FFFFFF;
+    height: 30px;
+    width: 148px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+button.add {
+    width: 300px;
+}
+button:hover {
+    color: white;
+    transition-duration: 0.4s;
+}
+button.theme-gamecube.add {
+    border-color: var(--addColorGamecube);
+}
+button.theme-controller.add {
+    border-color: var(--mainColorController);
+}
+button.theme-gamecube.add:hover {
+    color: var(--textColor);
+    background-color: var(--addColorGamecube);
+}
+button.theme-controller.add:hover {
+    background-color: var(--mainColorController);
+}
+button.theme-gamecube.save {
+    border-color: var(--saveColorGamecube);
+}
+button.theme-gamecube.save:hover {
+    background-color: var(--saveColorGamecube);
+}
+button.theme-gamecube.delete {
+    border-color: var(--deleteColorGamecube);
+}
+button.theme-gamecube.delete:hover {
+    background-color: var(--deleteColorGamecube);
+}
+button.theme-controller.save {
+    border-color: var(--mainColorController);
+}
+button.theme-controller.save:hover {
+    background-color: var(--mainColorController);
+}
+button.theme-controller.delete {
+    border-color: var(--mainColorController);
+}
+button.theme-controller.delete:hover {
+    background-color: var(--mainColorController);
+}
+
+/* No Data */
+.nodata {
+    color: white;
+    font-size: 50px;
+    border-style: double;
+    text-align: center;
+}
+.theme-gamecube.nodata {
+    background-color: var(--mainColorGamecube);
+}
+.theme-controller.nodata {
+    background-color: var(--mainColorController);
+}

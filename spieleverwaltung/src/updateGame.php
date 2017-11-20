@@ -11,14 +11,14 @@ $updateGame = array(
 foreach ($updateGame as $key => $formValue) {
     if (empty($formValue)) {
         $_SESSION['error'] = "Error: Field 'Game' must be filled!";
-        header('Location: http://localhost/spieleverwaltung/index.php');
+        header('Location: http://localhost/spieleverwaltung/');
         return;
     }
 
     // Check if any invalid insertion was committed
     if ((strpos($formValue, "\\") !== false) or (strpos($formValue, "/") !== false)) {
         $_SESSION['error'] = "Field " . $key . " contains invalid characters!";
-        header('Location: http://localhost/spieleverwaltung/index.php');
+        header('Location: http://localhost/spieleverwaltung/');
         return;
     }
 }
@@ -46,12 +46,10 @@ if ($stmt = mysqli_prepare($GLOBALS['connection'], $updateQueryString)) {
     mysqli_stmt_close($stmt);
 
 } else {
-    echo("Error description: " . mysqli_error($GLOBALS['connection']));
-    die();
+    $_SESSION['error'] = "Error description: " . mysqli_error($GLOBALS['connection']);
 }
-
 // Closing connection to the database
 mysqli_close($GLOBALS['connection']);
 
 // Refreshing the site after updates are done
-header('Location: http://localhost/spieleverwaltung/index.php');
+header('Location: http://localhost/spieleverwaltung/');

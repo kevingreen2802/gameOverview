@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Page not found.</title>
+    <link rel="stylesheet" href="web/css/spieleverwaltung.css">
+</head>
+<body>
+<div>
+    <form name='sessionError' action='index.php' method='post'>
+        <button type='submit' class='theme-gamecube delete' name='clearError'>Back</button>
+    </form>
+</div>
+<div class="theme-gamecube nodata">
+    <?php echo $_SESSION['error'] ; ?>
+</div>
+</body>
+</html>

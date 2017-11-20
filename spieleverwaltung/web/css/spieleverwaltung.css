@@ -3,9 +3,10 @@
     --mainColorGamecube: #4b2974;
     --mainColorController: #bb0000;
     --saveColorGamecube: darkgreen;
-    --deleteColorGamecube: darkred;
+    --deleteColorGamecube: #bb0000;
     --addColorGamecube: yellow;
     --textColor: black;
+    --errorColor: #bb0000;
 }
 
 /* Body */
@@ -54,12 +55,24 @@
 }
 
 .sessionError {
-    background-color: darkred;
-    -webkit-animation-name: blink;
+    background-color: var(--errorColor);
     color: white;
     font-size: 50px;
     text-align: center;
     border: dashed yellow;
+}
+
+.sortButton {
+    width: 50px;
+    height: 50px;
+}
+
+.sortAscButton {
+    width: 65px;
+    height: 65px;
+    background-image: url(../images/sortingIconAsc.png);
+    background-repeat: no-repeat;
+    border: none;
 }
 
 /* Search & Style Label */
@@ -72,6 +85,7 @@ label:hover {
     background-color: var(--mainColorGamecube);
     transition-duration: 0.4s;
     color: white;
+    cursor: pointer;
 }
 label.theme-gamecube {
     border: var(--mainColorGamecube) solid 2px;
@@ -126,7 +140,7 @@ label.theme-controller:hover {
 }
 
 /* Tables */
-input, select, button.save, button.delete {
+input, select, button.save, button.delete, button.ignore {
     height: 30px;
     box-sizing: border-box;
     text-align: center;
@@ -169,6 +183,7 @@ button.add {
 button:hover {
     color: white;
     transition-duration: 0.4s;
+    cursor: pointer;
 }
 button.theme-gamecube.add {
     border-color: var(--addColorGamecube);

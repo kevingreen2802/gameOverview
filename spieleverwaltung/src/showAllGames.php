@@ -20,6 +20,11 @@ $selectStatement = "SELECT games.id AS 'Spiele-ID',
           INNER JOIN medium
           ON games.medium_id = medium.id";
 
+$_SESSION['sortingGames'] = array (
+    'column' => 'games.name',
+    'order' => 'DESC'
+);
+
 $availableFields = array(
     'name' => 'games.name',
     'developer' => 'developer.name',
@@ -41,7 +46,7 @@ if (isset($_GET['resetGameSearchEntry'])) {
         $_GET[$availableField] = null;
     }
 
-    header('Location: http://localhost/spieleverwaltung/index.php');
+    header('Location: http://localhost/spieleverwaltung/');
 }
 
 if (!empty($_GET)) {
@@ -73,9 +78,7 @@ if (!empty($_GET)) {
             }
         }
     }
-}
-
-if (empty($_GET)) {
+} else {
     foreach ($availableFields as $availableField => $tableAndColumn) {
         $_SESSION['query'][$availableField] = null;
         $_GET[$availableField] = null;
@@ -84,11 +87,9 @@ if (empty($_GET)) {
 
 $selectStatement .= " ORDER BY games.name";
 
-if($GLOBALS['connection']) {
+if ($GLOBALS['connection']) {
 
-    $res = mysqli_query($GLOBALS['connection'], $selectStatement);
-
-// Creating a query and ejecting existing entries
+    // Creating a query and ejecting existing entries
     $developersResult = mysqli_query($GLOBALS['connection'], "SELECT * FROM developer");
     $developers = array();
     while ($developer = mysqli_fetch_assoc($developersResult)) {
@@ -113,15 +114,22 @@ if($GLOBALS['connection']) {
         $mediumTypes[] = $mediumType;
     }
 
-    $games = array();
-    while ($dsatz = mysqli_fetch_assoc($res)) {
-        $games[] = $dsatz;
+    $res = mysqli_query($GLOBALS['connection'], $selectStatement);
+
+    // check if mysqli select statement failed
+    if (!$res) {
+        $_SESSION['error'] = "ERROR: Service unavailablie";
+    } else {
+        $games = array();
+        while ($dsatz = mysqli_fetch_assoc($res)) {
+            $games[] = $dsatz;
+        }
     }
 
     mysqli_close($GLOBALS['connection']);
 
 } else {
-    $_SESSION['error'] = "ERROR: Could not connect to database.";
+    $_SESSION['error'] = "ERROR: Service unavailable.";
 }
 
 // Including the form
